@@ -87,41 +87,81 @@
 //         console.log("server started");
 //     })
 
-let express=require('express')
+// let express=require('express')
 
-let app= express()
+// let app= express()
 
-app.set('view engine','ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
-// let arr=['hii','hii','tiwariji','hii']
+// app.set('view engine','ejs')
+// app.use(express.static('public'))
+// app.use(express.urlencoded({extended:true}))
+// app.use(express.json())
+// // let arr=['hii','hii','tiwariji','hii']
 
-app.get('/',(req,res)=>{
+// app.get('/',(req,res)=>{
    
-    res.render('GetMethod')
-})
-app.get('/user',(req,res)=>{
-   let {name,email,password}= req.query
-   console.log(req.query);
-  // res.send(`${name} ${email} ${password}`)
-  res.send('hello')
-})
+//     res.render('GetMethod')
+// })
+// app.get('/user',(req,res)=>{
+//    let {name,email,password}= req.query
+//    console.log(req.query);
+//   // res.send(`${name} ${email} ${password}`)
+//   res.send('hello')
+// })
 
-app.post('/user',(req,res)=>{
-  console.log(req.body,'rrr');
-  let {name,email,password}= req.body
-res.send(`${name} ${email} ${password}`)
+// app.post('/user',(req,res)=>{
+//   console.log(req.body,'rrr');
+//   let {name,email,password}= req.body
+// res.send(`${name} ${email} ${password}`)
 // res.send('hello')
-})
+// })
 // app.get('/:hii',(req,res)=>{
   
 //     // let a= Math.floor(Math.random()*100)
 //   let {hii}=req.params
 //     res.render('random',{arr,hii})
 // })
-app.listen(4000,()=>{
-           console.log("server started");
-        })
+// app.listen(4000,()=>{
+//            console.log("server started");
+//         })
 
 
+let express=require('express')
+
+let app= express()
+app.set('view engine','ejs')
+app.use(express.urlencoded({extended:true}))
+let comments =[
+  {
+    id:0,
+    username:"Sam",
+    Comment:"chitkara is a nice univercity 0"
+  },
+  {
+    id:1,
+    username:"Kapil",
+    Comment: "Shimla is a very nyc place !!"
+  },
+  {
+    id:1,
+    username:"Kalpesh",
+    Comment: "Kalpesh is from khairipaika  !!"
+  }
+]
+
+app.get('/bold',(req,res)=>{
+  
+  res.render('Restful',{comments})
+})
+app.get('/bold/new',(req,res)=>{
+  
+  res.render('new',{comments})
+})
+app.post("/bold",(req,res)=>{
+    console.log(req.body,"rrr");
+    let {username,Comment} =req.body
+    comments.push({username,Comment})
+    res.redirect('/bold')
+})
+app.listen(5000,()=>{
+  console.log("server.....");
+})
