@@ -130,6 +130,8 @@ let express=require('express')
 let app= express()
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
+let methodOverride= require('method-override')
+app.use(methodOverride('_method'))
 let comments =[
   {
     id:0,
@@ -142,25 +144,43 @@ let comments =[
     Comment: "Shimla is a very nyc place !!"
   },
   {
-    id:1,
+    id:2,
     username:"Kalpesh",
     Comment: "Kalpesh is from khairipaika  !!"
   }
 ]
 
-app.get('/bold',(req,res)=>{
+app.get('/blogs',(req,res)=>{
   
   res.render('Restful',{comments})
 })
-app.get('/bold/new',(req,res)=>{
+app.get('/blogs/new',(req,res)=>{
   
   res.render('new',{comments})
 })
-app.post("/bold",(req,res)=>{
+app.post("/blogs",(req,res)=>{
     console.log(req.body,"rrr");
     let {username,Comment} =req.body
     comments.push({username,Comment})
     res.redirect('/bold')
+})
+app.get("/blogs/:id",(req,res)=>{
+let {id}=req.params
+console.log(id,"hhh");
+let findData=comments.find((data)=>{return data.id==id})
+console.log(findData);
+res.render('edit',{findData})
+})
+app.patch("/blogs/:id",(req,res)=>{
+  let {id}= req.params
+  console.log(id,"rrr");
+  let {username,Comment} = req.body
+  let Data=comments.find((data)=>{return data.id==id})
+
+  Data.Comment=Comment
+  Data.username=username
+  console.log(Data);
+ res.redirect('/blogs')
 })
 app.listen(5000,()=>{
   console.log("server.....");
