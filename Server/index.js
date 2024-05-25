@@ -182,10 +182,17 @@ app.patch("/blogs/:id",(req,res)=>{
   console.log(Data);
  res.redirect('/blogs')
 })
+app.delete("/blog/:id",(req,res)=>{
+ let {id}=req.params
+   console.log(id);
+   let newData=comments.filter((data)=>{
+    return data.id!=id
+   }) 
+   comments=newData
+   res.redirect('/blogs')
+  
+})
 app.listen(5000,()=>{
   console.log("server.....");
 })
-
-
-
 
