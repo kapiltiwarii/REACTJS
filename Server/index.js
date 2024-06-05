@@ -125,74 +125,136 @@
 //         })
 
 
+// let express=require('express')
+
+// let app= express()
+// app.set('view engine','ejs')
+// app.use(express.urlencoded({extended:true}))
+// let methodOverride= require('method-override')
+// app.use(methodOverride('_method'))
+// let comments =[
+//   {
+//     id:0,
+//     username:"Sam",
+//     Comment:"chitkara is a nice univercity 0"
+//   },
+//   {
+//     id:1,
+//     username:"Kapil",
+//     Comment: "Shimla is a very nyc place !!"
+//   },
+//   {
+//     id:2,
+//     username:"Kalpesh",
+//     Comment: "Kalpesh is from khairipaika  !!"
+//   }
+// ]
+
+// app.get('/blogs',(req,res)=>{
+  
+//   res.render('Restful',{comments})
+// })
+// app.get('/blogs/new',(req,res)=>{
+  
+//   res.render('new',{comments})
+// })
+// app.post("/blogs",(req,res)=>{
+//     console.log(req.body,"rrr");
+//     let {username,Comment} =req.body
+//     comments.push({username,Comment})
+//     res.redirect('/bold')
+// })
+// app.get("/blogs/:id",(req,res)=>{
+// let {id}=req.params
+// console.log(id,"hhh");
+// let findData=comments.find((data)=>{return data.id==id})
+// console.log(findData);
+// res.render('edit',{findData})
+// })
+// app.patch("/blogs/:id",(req,res)=>{
+//   let {id}= req.params
+//   console.log(id,"rrr");
+//   let {username,Comment} = req.body
+//   let Data=comments.find((data)=>{return data.id==id})
+
+//   Data.Comment=Comment
+//   Data.username=username
+//   console.log(Data);
+//  res.redirect('/blogs')
+// })
+// app.delete("/blog/:id",(req,res)=>{
+//  let {id}=req.params
+//    console.log(id);
+//    let newData=comments.filter((data)=>{
+//     return data.id!=id
+//    }) 
+//    comments=newData
+//    res.redirect('/blogs')
+  
+// })
+// app.listen(5000,()=>{
+//   console.log("server.....");
+// })
+
+// CSR AND SSR
+// let arr=[1,2,3,4,5]
+// let express=require('express')
+
+// let app= express()
+// app.set('view engine','ejs')
+// app.use(express.urlencoded({extended:true}))
+// app.use(express.static('public'))
+// app.get('/todo',(req,res)=>{
+ 
+//   if(req.xhr){
+//     res.json(arr)
+//   }
+//   else{
+//     res.render('SSR',{arr})
+//   }
+  
+// })
+// app.post('/todo',(req,res)=>{
+//   console.log(req.body);
+//   let {data} = req.body
+//   let data1 =parseInt(data)
+//   arr.push(data1)
+//   res.redirect('/todo')
+// })
+// app.listen(5000,()=>{
+//     console.log("server.....");
+//   })
+
+
+
+//MONGO DB CONNECT
 let express=require('express')
+let Users=require('./db/model/model')
+// let mongoose=require('mongoose')
+// mongoose.connect('mongodb://127.0.0.1:27017/mydata').then(()=>{
+// console.log('db');
+// }).catch((err)=>{
+//   console.log(err,"nahi chala");
+// })
 
-let app= express()
-app.set('view engine','ejs')
-app.use(express.urlencoded({extended:true}))
-let methodOverride= require('method-override')
-app.use(methodOverride('_method'))
-let comments =[
-  {
-    id:0,
-    username:"Sam",
-    Comment:"chitkara is a nice univercity 0"
-  },
-  {
-    id:1,
-    username:"Kapil",
-    Comment: "Shimla is a very nyc place !!"
-  },
-  {
-    id:2,
-    username:"Kalpesh",
-    Comment: "Kalpesh is from khairipaika  !!"
-  }
-]
+// let userSchema=mongoose.Schema({
+ 
+// name:{
+//   type: String,
+//   required:true
+// },
+// lastName:String,
+// num:Number,
+// isBool:Boolean
+// })
+// let Users=mongoose.model('User',userSchema)
+let user=new Users({name:'Kapil',lastName:"Tiwari",num:883940})
+user.save()
+ let app= express()
+ app.get('/',(req,res)=>{
+  res.send('hello');
+ })
 
-app.get('/blogs',(req,res)=>{
-  
-  res.render('Restful',{comments})
-})
-app.get('/blogs/new',(req,res)=>{
-  
-  res.render('new',{comments})
-})
-app.post("/blogs",(req,res)=>{
-    console.log(req.body,"rrr");
-    let {username,Comment} =req.body
-    comments.push({username,Comment})
-    res.redirect('/bold')
-})
-app.get("/blogs/:id",(req,res)=>{
-let {id}=req.params
-console.log(id,"hhh");
-let findData=comments.find((data)=>{return data.id==id})
-console.log(findData);
-res.render('edit',{findData})
-})
-app.patch("/blogs/:id",(req,res)=>{
-  let {id}= req.params
-  console.log(id,"rrr");
-  let {username,Comment} = req.body
-  let Data=comments.find((data)=>{return data.id==id})
-
-  Data.Comment=Comment
-  Data.username=username
-  console.log(Data);
- res.redirect('/blogs')
-})
-app.delete("/blog/:id",(req,res)=>{
- let {id}=req.params
-   console.log(id);
-   let newData=comments.filter((data)=>{
-    return data.id!=id
-   }) 
-   comments=newData
-   res.redirect('/blogs')
-  
-})
-app.listen(5000,()=>{
-  console.log("server.....");
-})
-
+ app.listen(4000,()=>{
+  console.log('server......');
+ })
