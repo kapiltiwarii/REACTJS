@@ -9,6 +9,7 @@ export const ZomatoHome = () => {
   }
   function Login() {
     navigate('/log')
+    
   }
 
   return (
