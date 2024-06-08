@@ -12,7 +12,7 @@ let bcrypt=require('bcrypt')
 app.use(express.json())
 app.post('/signup',async(req,res)=>{
     let userData = req.body
-   
+   console.log(userData);
     let {email}=req.body
     let User= await Users.findOne({email})
     console.log(email);
@@ -21,6 +21,7 @@ app.post('/signup',async(req,res)=>{
     }
     else{
         userData.passWord= await bcrypt.hash((userData.passWord),10)
+       
         console.log(userData.passWord);
         res.send('raam')
         
