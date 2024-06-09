@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <fieldset>
         <legend>Edit </legend>
-       <form action="/blogs/<%=findData.id %>?_method=PATCH" method="post">
-        <input type="text" name="username" value="<%=findData.username%>">
-        <br>
-        <br>
-        <input type="text" name="Comment" value="<%=findData.Comment%>">
-        <br>
-        <br>
-        <button>Save</button>
-       </form>
+        <form action="/blogs/<%=findData.id %>?_method=PATCH" method="post">
+            <input type="text" name="username" value="<%=findData.username%>">
+            <br>
+            <br>
+            <input type="text" name="Comment" value="<%=findData.Comment%>">
+            <br>
+            <br>
+            <button>Save</button>
+        </form>
     </fieldset>
 </body>
+
 </html>

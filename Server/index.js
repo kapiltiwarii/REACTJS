@@ -98,7 +98,7 @@
 // // let arr=['hii','hii','tiwariji','hii']
 
 // app.get('/',(req,res)=>{
-   
+
 //     res.render('GetMethod')
 // })
 // app.get('/user',(req,res)=>{
@@ -115,7 +115,7 @@
 // res.send('hello')
 // })
 // app.get('/:hii',(req,res)=>{
-  
+
 //     // let a= Math.floor(Math.random()*100)
 //   let {hii}=req.params
 //     res.render('random',{arr,hii})
@@ -151,11 +151,11 @@
 // ]
 
 // app.get('/blogs',(req,res)=>{
-  
+
 //   res.render('Restful',{comments})
 // })
 // app.get('/blogs/new',(req,res)=>{
-  
+
 //   res.render('new',{comments})
 // })
 // app.post("/blogs",(req,res)=>{
@@ -190,7 +190,7 @@
 //    }) 
 //    comments=newData
 //    res.redirect('/blogs')
-  
+
 // })
 // app.listen(5000,()=>{
 //   console.log("server.....");
@@ -205,14 +205,14 @@
 // app.use(express.urlencoded({extended:true}))
 // app.use(express.static('public'))
 // app.get('/todo',(req,res)=>{
- 
+
 //   if(req.xhr){
 //     res.json(arr)
 //   }
 //   else{
 //     res.render('SSR',{arr})
 //   }
-  
+
 // })
 // app.post('/todo',(req,res)=>{
 //   console.log(req.body);
@@ -228,8 +228,8 @@
 
 
 //MONGO DB CONNECT
-let express=require('express')
-let Users=require('./db/model/model')
+let express = require('express')
+let Users = require('./db/model/model')
 // let mongoose=require('mongoose')
 // mongoose.connect('mongodb://127.0.0.1:27017/mydata').then(()=>{
 // console.log('db');
@@ -238,7 +238,7 @@ let Users=require('./db/model/model')
 // })
 
 // let userSchema=mongoose.Schema({
- 
+
 // name:{
 //   type: String,
 //   required:true
@@ -248,13 +248,13 @@ let Users=require('./db/model/model')
 // isBool:Boolean
 // })
 // let Users=mongoose.model('User',userSchema)
-let user=new Users({name:'Kapil',lastName:"Tiwari",num:883940})
+let user = new Users({ name: 'Kapil', lastName: "Tiwari", num: 883940 })
 user.save()
- let app= express()
- app.get('/',(req,res)=>{
-  res.send('hello');
- })
+let app = express()
+app.get('/', (req, res) => {
+    res.send('hello');
+})
 
- app.listen(4000,()=>{
-  console.log('server......');
- })
+app.listen(4000, () => {
+    console.log('server......');
+})
