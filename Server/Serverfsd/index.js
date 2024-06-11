@@ -58,7 +58,7 @@ let comments=
 ]
 let express = require('express')
 let app = express()
-app.use(express.urlencoded({extended:true}))
+ 
 let methodOverride= require('method-override')
 app.use(methodOverride('_method'))
  app.set('view engine','ejs')
