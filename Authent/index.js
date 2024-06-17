@@ -1,6 +1,7 @@
 let express = require('express')
 let mongoose = require('mongoose')
 let Users = require('./model/model')
+let cors = require('cors')
 mongoose.connect('mongodb://127.0.0.1:27017/kapil').then(() => {
     console.log('Chal gaya');
 }).catch((err) => {
@@ -10,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/kapil').then(() => {
 let app = express()
 let bcrypt = require('bcrypt')
 let jwt = require('jsonwebtoken')
+app.use(cors())
 app.use(express.json())
 app.get('')
 app.post('/signup', async (req, res) => {
@@ -48,10 +50,7 @@ app.post('/signup', async (req, res) => {
     else{
         // res.send('koi mil gya')
        let validPass=  await bcrypt.compare(userInfo.passWord,loginData.passWord)
-       if (!
-        
-        
-        validPass) {
+       if (!validPass) {
         res.send('invalid')
        }
        else{
