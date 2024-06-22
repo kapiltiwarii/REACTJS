@@ -16,7 +16,7 @@ app.use(express.json())
 app.get('')
 app.post('/signup', async (req, res) => {
     let userData = req.body
-    // console.log(userData);
+    console.log(userData);
     let { email } = req.body
     let User = await Users.findOne({ email })
     console.log(email);
@@ -40,6 +40,7 @@ app.post('/signup', async (req, res) => {
 
     // res.send('eeree')
     })
+
     app.post('/login',async(req,res)=>{
         // console.log(req.body);
     let userInfo=req.body
@@ -56,7 +57,7 @@ app.post('/signup', async (req, res) => {
        else{
         let data = JSON.stringify(loginData)
        let token= jwt.sign(data,"kapilbhaai")
-        res.send({token,loginData})
+        res.send({loginData,token})
        }
     }
     
